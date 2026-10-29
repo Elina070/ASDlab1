@@ -217,8 +217,8 @@ void AndSets(bool* src, bool* dst) {
 
 // Разность: dst = dst И НЕ src. Формула: dst[i] = ~src[i] & dst[i].
 void ExclusionSets(bool* src, bool* dst) {
-    for (int i = 0; i < LENOFLETTERS; ++i) dst[i] = ~src[i] & dst[i];
-}
+    for (int i = 0; i < LENOFLETTERS; ++i) dst[i] = !src[i] & dst[i];
+}//использоваать !
 
 // Печать: выводим буквы, для которых флаг true.
 void PrintSet(bool* set) {
