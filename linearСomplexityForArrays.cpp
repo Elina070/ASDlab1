@@ -132,13 +132,14 @@ int main(void) {
     //          Если он идёт на вход другой функции — пишем .d.
     // Пример: ((D AND C) OR A) AND NOT B
     // ------------------------------------------------------------
-    Buf result = setAnd(
-        setOr( setAnd(D.d, C.d).d, A.d ).d,   // (D AND C) OR A
-        setNot( B.d ).d                       // NOT B
-    );
+    // E = (A \ B) ∪ (C ∩ D) = (A ∩ NOT(B)) ∪ (C ∩ D)
+Buf result = setOr(
+    setAnd(A.d, setNot(B.d).d).d,
+    setAnd(C.d, D.d).d
+);
 
     printf("\n--- Result ---\n");
-    printSet("((D AND C) OR A) AND NOT B", result.d);
+    printSet("11 variant:", result.d);
     printf("Result size: %zu\n", strlen(result.d));
 
     return 0;
